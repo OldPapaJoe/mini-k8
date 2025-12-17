@@ -1,0 +1,12 @@
+apiVersion: cert-manager.io/v1
+kind: ClusterIssuer
+metadata:
+  name: ca-issuer
+spec:
+  ca:
+    secretName: ca-key-pair
+---
+# Hinweis: Das Secret 'ca-key-pair' muss separat erstellt werden
+# Verwenden Sie: ./scripts/generate-ca-cert.sh
+# Das Secret wird automatisch im cert-manager Namespace erstellt
+

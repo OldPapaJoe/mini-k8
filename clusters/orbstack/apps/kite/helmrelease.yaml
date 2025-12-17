@@ -1,0 +1,27 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: kite
+  namespace: kube-system
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: kite
+      sourceRef:
+        kind: HelmRepository
+        name: kite
+        namespace: flux-system
+      version: "*"
+  values:
+    resources:
+      limits:
+        cpu: 500m
+        memory: 256Mi
+      requests:
+        cpu: 100m
+        memory: 128Mi
+    # Prometheus-Konfiguration (optional)
+    # prometheus:
+    #   url: "http://prometheus.monitoring.svc.cluster.local:9090"
+
